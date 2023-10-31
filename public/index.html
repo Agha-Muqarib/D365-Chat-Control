@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <script src="ClientGlobalContext.js.aspx" type="text/javascript"></script>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link
+      href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Get Started</title>
+    <style type="text/css">
+      body {
+        background: #ddd;
+        margin-top: 10px;
+      }
+
+      .chat-box {
+        height: 100%;
+        width: 100%;
+        background-color: #fff;
+        overflow: hidden;
+      }
+
+      .chats {
+        padding: 30px 15px;
+      }
+
+      .chat-avatar {
+        float: right;
+      }
+
+      .chat-avatar .avatar {
+        width: 30px;
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+          0 6px 10px 0 rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+          0 6px 10px 0 rgba(0, 0, 0, 0.3);
+      }
+
+      .chat-body {
+        display: block;
+        margin: 10px 30px 0 0;
+        overflow: hidden;
+      }
+
+      .chat-body:first-child {
+        margin-top: 0;
+      }
+
+      .chat-content {
+        position: relative;
+        display: block;
+        float: right;
+        padding: 8px 15px;
+        margin: 0 20px 10px 0;
+        clear: both;
+        color: #fff;
+        background-color: #62a8ea;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+      }
+
+      .chat-content:before {
+        position: absolute;
+        top: 10px;
+        right: -10px;
+        width: 0;
+        height: 0;
+        content: "";
+        border: 5px solid transparent;
+        border-left-color: #62a8ea;
+      }
+
+      .chat-content > p:last-child {
+        margin-bottom: 0;
+      }
+
+      .chat-content + .chat-content:before {
+        border-color: transparent;
+      }
+
+      .chat-time {
+        display: block;
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .chat-left .chat-avatar {
+        float: left;
+      }
+
+      .chat-left .chat-body {
+        margin-right: 0;
+        margin-left: 30px;
+      }
+
+      .chat-left .chat-content {
+        float: left;
+        margin: 0 0 10px 20px;
+        color: #76838f;
+        background-color: #dfe9ef;
+      }
+
+      .chat-left .chat-content:before {
+        right: auto;
+        left: -10px;
+        border-right-color: #dfe9ef;
+        border-left-color: transparent;
+      }
+
+      .chat-left .chat-content + .chat-content:before {
+        border-color: transparent;
+      }
+
+      .chat-left .chat-time {
+        color: #a3afb7;
+      }
+
+      .panel-footer {
+        padding: 0 30px 15px;
+        background-color: transparent;
+        border-top: 1px solid transparent;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+      .avatar img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border: 0 none;
+        border-radius: 1000px;
+      }
+      .chat-avatar .avatar {
+        width: 30px;
+      }
+      .avatar {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        white-space: nowrap;
+        border-radius: 1000px;
+        vertical-align: bottom;
+      }
+
+      /*** extended css ***/
+      .panel-heading {
+        background: #0b556a;
+        color: #fff;
+        overflow: auto;
+      }
+
+      h3.panel-title {
+        float: left;
+        line-height: 2em;
+      }
+
+      .btn-plus {
+        float: right;
+      }
+      ul.topBtns {
+        list-style: none;
+        padding: 5px;
+        margin: 0 0 15px 0;
+      }
+      ul.topBtns li {
+        float: left;
+        width: 33%;
+        padding-bottom: 5px;
+        padding-left: 2px;
+        overflow-x: hidden;
+      }
+
+      ul.topBtns li button {
+        color: #ffffff !important;
+        font-size: 9px !important;
+        font-weight: 600;
+        padding: 7px 1px !important;
+        width: 100%;
+        white-space: pre-wrap;
+        border-radius: 2em;
+      }
+
+      aside {
+        overflow: auto;
+      }
+      .btn-start {
+        background: #0b556a !important;
+        color: #fff;
+        width: 150px;
+        border-radius: 2em;
+        text-align: center !important;
+        margin: 0 auto;
+        display: block;
+        height: 40px;
+      }
+      .hidden {
+        display: none;
+      }
+
+      /* revised css*/
+      .panel-heading {
+        padding: 0px 10px;
+      }
+      h3.panel-title {
+        line-height: 3em !important;
+        font-size: 18px;
+        margin-bottom: 0 !important;
+      }
+      .btn-plus {
+        margin: 8px 0;
+        color: #fff !important;
+      }
+      .btn-start {
+        color: #fff !important;
+        border-radius: 2em !important;
+        display: block !important;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: 700;
+      }
+      .btn-common {
+        background: #209bbe !important;
+        height: auto;
+      }
+      .btn-common:hover {
+        background: #0b556a !important;
+      }
+      li.list-group-item:hover {
+        background: #f0f0f0;
+        cursor: pointer;
+      }
+      ul.chat-user li:last-child {
+        float: right;
+        line-height: 2.5em;
+        font-size: 24px;
+        text-align: right;
+        color: #209bbe;
+      }
+      #root,
+      body,
+      html {
+        height: 100%;
+        overflow: hidden !important;
+      }
+      .list-group-ext {
+        height: 70vh;
+        overflow: auto;
+        overflow-x: hidden;
+      }
+      .suffix-144 {
+        position: relative;
+        right: 5px;
+        bottom: 4px;
+      }
+      .ui-chat {
+        height: 57vh !important;
+        overflow: auto !important;
+        overflow-x: hidden !important;
+      }
+      .btn-align {
+        margin-top: 1.5em;
+        background: #209bbe !important;
+        border: 1px solid #209bbe !important;
+      }
+      .panel-body-ext {
+        padding: 0 5px !important;
+      }
+      ul.chat-user {
+        list-style: none;
+        padding: 0;
+      }
+      ul.chat-user li {
+        display: inline;
+        border: 0;
+        text-decoration: none;
+        font-size: 12px;
+      }
+      ul.chat-user li img {
+        width: 50px !important;
+        border-radius: 12em !important;
+        margin-right: 3px;
+      }
+      .chat-link {
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .btn-common-inner {
+        background: #209bbe !important;
+        color: #fff !important;
+      }
+      .btn-common-inner:hover {
+        background: #0b556a !important;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>
